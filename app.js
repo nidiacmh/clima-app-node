@@ -11,12 +11,11 @@ const argv = require('yargs').options({
   }
 }).argv;
 
-let getInfo = async () =>{
+let getInfo = async (direccion) =>{
 
   try{
-    let coors = await lugar.getLugarLatLng(argv.direccion);
-    console.log(coors);
-    let temp = await getClima(coors.lat, coors.lng);
+    let coors = await lugar.getLugarLatLng(direccion);
+    let temp = await clima.getClima(coors.lat, coors.lng);
 
 
     return `El clima en ${coors.direccion} es de ${ temp} °C`;
