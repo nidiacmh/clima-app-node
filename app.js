@@ -15,17 +15,18 @@ let getInfo = async () =>{
 
   try{
     let coors = await lugar.getLugarLatLng(argv.direccion);
+    console.log(coors);
     let temp = await getClima(coors.lat, coors.lng);
 
-    return `El clima en ${coors.direccion} es de ${ temp} °C`;
-  }
 
+    return `El clima en ${coors.direccion} es de ${ temp} °C`;
+  }catch(e){
+    return ` No se pudo encontrar un clima en: ${argv.direccion}`;
+  }
+}
   getInfo( argv.direccion)
       .then(mensaje => console.log(mensaje))
       .catch(e => console.log(e));
-  }catch(e){
-    return ` No se pudo encontrar un clima en: ${direccion}`;
-  }
 
 /*lugar.getLugarLatLng(argv.direccion)
     .then(resp =>{
